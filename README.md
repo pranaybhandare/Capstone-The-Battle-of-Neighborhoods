@@ -3,7 +3,7 @@ Now that you have been equipped with the skills and the tools to use location da
 
 1) Introduction/Business Problem: Clearly define a problem or an idea of your choice, where you would need to leverage the Foursquare location data to solve or execute. Remember that data science problems always target an audience and are meant to help a group of stakeholders solve a problem, so make sure that you explicitly describe your audience and why they would care about your problem.
 
-**The idea of this study is to help people planning vacations in NYC understand the most happening venues around their AirBNB to understand what locals from that area are into and what possible events they can attend to get a taste of the culture and vibes in a potential vacation spot. 
+**The idea of this study is to help people planning vacations in NYC understand the most happening venues around their AirBNB to understand what locals from that area are into and what possible events they can attend to get a taste of the culture and vibes in a potential vacation spot.**
 
 2) Downloading and Prepping Data: Describe the data that you will be using to solve the problem or execute your idea. Remember that you will need to use the Foursquare location data to solve the problem or execute your idea. You can absolutely use other datasets in combination with the Foursquare location data. So make sure that you provide adequate explanation and discussion, with examples, of the data that you will be using, even if it is only Foursquare location data.
 
