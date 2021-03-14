@@ -72,7 +72,7 @@ neighborhoods_data[0]
 column_names = ['Borough', 'Neighborhood', 'Latitude', 'Longitude']
 neighborhoods = pd.DataFrame(columns = column_names)
 
-#Loop through json and fill the df row at a time - n
+#Loop through json and fill the df row at a time - n  get  the neighborhood information
 for data in neighborhoods_data:
     borough = neighborhood_name = data['properties']['borough']
     neighborhood_name = data['properties']['name']
@@ -95,7 +95,7 @@ latitude = location.latitude
 longitude = location.longitude
 print('The geograpical coordinate of New York City are {}, {}.'.format(latitude, longitude))
 
-#Create a map of NY with neighborhoods superimposed on top
+#Create a map of NY with neighborhoods superimposed on top - all neighborhoods in NYC
 map_newyork = folium.Map(location=[latitude, longitude], zoom_start=10)
 
 # add markers to map
@@ -190,12 +190,12 @@ def getNearbyVenues(names, latitudes, longitudes, radius=500):
     
     return(nearby_venues)
 
-#manhattan venues
+#manhattan venues - get all venues in  Manhattan
 manhattan_venues  = getNearbyVenues(names = Manhattan_data['Neighborhood'], latitudes = Manhattan_data['Latitude'], longitudes = Manhattan_data['Longitude'])
 #print(manhattan_venues.shape)
 manhattan_venues.shape
 
-#BK venues
+#BK venues - get all venues in BK
 BK_venues  = getNearbyVenues(names = BK_data['Neighborhood'], latitudes = BK_data['Latitude'], longitudes = BK_data['Longitude'])
 print(BK_venues.shape)
 BK_venues.head()
@@ -373,4 +373,40 @@ for lat, lon, poi, cluster in zip(BK_merged['Neighborhood Latitude'], BK_merged[
        
 BK_map_clusters
 
+airbnb_df.head()
+#Listings in all 4 neighborhoods of interest
+Williamsburg_listings = airbnb_df[airbnb_df['neighbourhood'] == 'Williamsburg'] 
+Kensington_listings = airbnb_df[airbnb_df['neighbourhood'] == 'Kensington'] 
+Chelsea_listings = airbnb_df[airbnb_df['neighbourhood'] == 'Chelsea'] 
+GreenwichVillage_listings = airbnb_df[airbnb_df['neighbourhood'] == 'Greenwich Village'] 
 
+#Williamsburg
+#Filter for prices between 100-200, private rooms, minimum nights>3
+Williamsburg_listings = Williamsburg_listings[(Williamsburg_listings.price < 200) & (Williamsburg_listings.price > 100)]
+Williamsburg_listings = Williamsburg_listings[(Williamsburg_listings.minimum_nights > 3) & (Williamsburg_listings.number_of_reviews >= 10)]
+#10 cheapest options
+Williamsburg_listings.sort_values(by = 'price', ascending = True).head(10)
+
+#Kensington
+#Filter for prices between 100-200, private rooms, minimum nights>3
+Kensington_listings = Kensington_listings[(Kensington_listings.price < 200) & (Kensington_listings.price > 100)]
+Kensington_listings = Kensington_listings[(Kensington_listings.minimum_nights > 3) & (Kensington_listings.number_of_reviews >= 10)]
+Kensington_listings.sort_values(by = 'price', ascending = True).head(10)
+
+#Chelsea
+#Filter for prices between 100-200, private rooms, minimum nights>3
+Chelsea_listings = Chelsea_listings[(Chelsea_listings.price < 200) & (Chelsea_listings.price > 100)]
+Chelsea_listings = Chelsea_listings[(Chelsea_listings.minimum_nights > 3) & (Chelsea_listings.number_of_reviews >= 10)]
+Chelsea_listings.sort_values(by = 'price', ascending = True).head(10)
+
+#GV
+#Filter for prices between 100-200, private rooms, minimum nights>3
+GreenwichVillage_listings = GreenwichVillage_listings[(GreenwichVillage_listings.price < 200) & (GreenwichVillage_listings.price > 100)]
+GreenwichVillage_listings = GreenwichVillage_listings[(GreenwichVillage_listings.minimum_nights > 3) & (GreenwichVillage_listings.number_of_reviews >= 10)]
+GreenwichVillage_listings.sort_values(by = 'price', ascending = True).head(10)
+
+
+
+
+MH_options = ['Chelsea', 'Midtown']
+MH_listings = airbnb_df[airbnb_df['neighbourhood'].isin(MH_options)]
